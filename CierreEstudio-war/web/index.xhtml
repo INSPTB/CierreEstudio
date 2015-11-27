@@ -1,0 +1,639 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+
+ <h:head>
+  <title>Cierre Estudio</title>        
+ </h:head>
+ 
+ <h:body>
+  <ui:composition template="Templates/templatePrincipal.xhtml">
+ <ui:define name="top">
+    <h:outputLabel value="Formato Cierre Estudio" style="font-size: large; font-weight: bold"/>
+   </ui:define>
+   
+    <ui:define name="left">
+    
+    </ui:define>
+
+   <ui:define name="content"> 
+    <p:growl id="mensajes" globalOnly="true" sticky="true"  showDetail="true"/> 
+    <h:form id="form1">
+     <h:panelGrid columns="10">
+      
+       <!-- p01fechaLlenado --> 
+      <h:outputLabel value="FECHA LLENADO:" for="p01fechaLlenado" /> 
+      <p:inputMask id="p01fechaLlenado" size="10" mask="99/99/9999" value="#{cierreEstudioMB.cierreEstudio.p01fechaLlenado}" title="FECHA LLENADO" onkeypress="return tabular(event, this)" >       <f:convertDateTime pattern="dd/MM/yyyy" /> 
+       <p:ajax update="p01fechaLlenadoE" event="blur" /> 
+       <f:validator validatorId="validadorFecha" /> 
+       <f:attribute name="startDate" value="31/12/1989"/> 
+       <f:attribute name="endDate" value="30/12/2015"/> 
+      </p:inputMask> 
+      <h:outputLabel escape="false" style="font-size: small; font-weight: bold"  
+                     for="p01fechaLlenado" /> 
+      <p:message id="p01fechaLlenadoE" for="p01fechaLlenado" />
+
+      <!-- p02folio -->
+      <h:outputLabel value="FOLIO:" for="p02folio" /> 
+      <p:inputText id="p02folio" size="25" value="#{cierreEstudioMB.cierreEstudio.p02folio}" title="FOLIO" onkeypress="return tabular(event, this)" > 
+       <p:ajax update="p02folioE" event="blur" /> 
+       <f:validator validatorId="validadorTexto" /> 
+       <f:attribute name="valorMissing" value="NHD"/> 
+       <f:attribute name="max" value="255"/> 
+      </p:inputText>
+      <h:outputLabel escape="false" style="font-size: small; font-weight: bold"  
+                     value="#{msg.p02folio}" for="p02folio" /> 
+      <p:message id="p02folioE" for="p02folio" />
+      
+
+      <!-- p03edadMeses --> 
+      <h:outputLabel value="EDAD EN MESES:" for="p03edadMeses" /> 
+      <p:inputText id="p03edadMeses" size="2" value="#{cierreEstudioMB.cierreEstudio.p03edadMeses}" title="EDAD MESES" onkeypress="return tabular(event, this)" > 
+       <p:ajax update="p03edadMesesE" event="blur" /> 
+       <f:validator validatorId="validadorNumeroEntero" /> 
+       <f:attribute name="valorMissing" value="999"/> 
+       <f:attribute name="max" value="100"/> 
+       <f:attribute name="min" value="0"/> 
+      </p:inputText> 
+      <h:outputLabel escape="false" style="font-size: small; font-weight: bold"  value="#{msg.p03edadMeses}" for="p03edadMeses" /> 
+      <p:message id="p03edadMesesE" for="p03edadMeses" />
+
+     <!-- p04aPaterno --> 
+      <h:outputLabel value="A. PATERNO:" for="p04aPaterno" /> 
+      <p:inputText id="p04aPaterno" size="25" value="#{cierreEstudioMB.cierreEstudio.p04aPaterno}" title="A. PATERNO" onkeypress="return tabular(event, this)" > 
+       <p:ajax update="p04aPaternoE" event="blur" /> 
+       <f:validator validatorId="validadorTexto" /> 
+       <f:attribute name="valorMissing" value="NHD"/> 
+       <f:attribute name="max" value="255"/> 
+      </p:inputText> 
+      <h:outputLabel escape="false" style="font-size: small; font-weight: bold" 
+                     value="#{msg.p04aPaterno}" for="p04aPaterno" /> 
+      <p:message id="p04aPaternoE" for="p04aPaterno" />
+      
+      <!-- p04aMaterno --> 
+      <h:outputLabel value="A. MATERNO:" for="p04aMaterno" /> 
+      <p:inputText id="p04aMaterno" size="25" value="#{cierreEstudioMB.cierreEstudio.p04aMaterno}" title="A. MATERNO" onkeypress="return tabular(event, this)" > 
+       <p:ajax update="p04aMaternoE" event="blur" /> 
+       <f:validator validatorId="validadorTexto" /> 
+       <f:attribute name="valorMissing" value="NHD"/> 
+       <f:attribute name="max" value="255"/> 
+      </p:inputText> 
+      <h:outputLabel escape="false" style="font-size: small; font-weight: bold" 
+                     value="#{msg.p04aMaterno}" for="p04aMaterno" /> 
+      <p:message id="p04aMaternoE" for="p04aMaterno" />
+      
+      <!-- p04nombre --> 
+      <h:outputLabel value="NOMBRE:" for="p04nombre" /> 
+      <p:inputText id="p04nombre" size="25" value="#{cierreEstudioMB.cierreEstudio.p04nombre}" title="NOMBRE" onkeypress="return tabular(event, this)" > 
+       <p:ajax update="p04nombreE" event="blur" /> 
+       <f:validator validatorId="validadorTexto" /> 
+       <f:attribute name="valorMissing" value="NHD"/> 
+       <f:attribute name="max" value="255"/> 
+      </p:inputText> 
+      <h:outputLabel escape="false" style="font-size: small; font-weight: bold" 
+                     value="#{msg.p04nombre}" for="p04nombre" /> 
+      <p:message id="p04nombreE" for="p04nombre" />
+
+      <!-- p05aPaternoT --> 
+      <h:outputLabel value="A. PATERNO TUTOR:" for="p05aPaternoT" /> 
+      <p:inputText id="p05aPaternoT" size="25" value="#{cierreEstudioMB.cierreEstudio.p05aPaternoT}" title="A. PATERNO TUTOR" onkeypress="return tabular(event, this)" > 
+       <p:ajax update="p05aPaternoTE" event="blur" /> 
+       <f:validator validatorId="validadorTexto" /> 
+       <f:attribute name="valorMissing" value="NHD"/> 
+       <f:attribute name="max" value="255"/> 
+      </p:inputText> 
+      <h:outputLabel escape="false" style="font-size: small; font-weight: bold" 
+                     value="#{msg.p05aPaternoT}" for="p05aPaternoT" /> 
+      <p:message id="p05aPaternoTE" for="p05aPaternoT" />
+      
+      <!-- p05aMaternoT --> 
+      <h:outputLabel value="A. MATERNO TUTOR:" for="p05aMaternoT" /> 
+      <p:inputText id="p05aMaternoT" size="25" value="#{cierreEstudioMB.cierreEstudio.p05aMaternoT}" title="A. MATERNO TUTOR" onkeypress="return tabular(event, this)" > 
+       <p:ajax update="p05aMaternoTE" event="blur" /> 
+       <f:validator validatorId="validadorTexto" /> 
+       <f:attribute name="valorMissing" value="NHD"/> 
+       <f:attribute name="max" value="255"/> 
+      </p:inputText> 
+      <h:outputLabel escape="false" style="font-size: small; font-weight: bold" 
+                     value="#{msg.p05aMaternoT}" for="p05aMaternoT" /> 
+      <p:message id="p05aMaternoTE" for="p05aMaternoT" />
+      
+      <!-- p05nombreT --> 
+      <h:outputLabel value="NOMBRE TUTOR:" for="p05nombreT" /> 
+      <p:inputText id="p05nombreT" size="25" value="#{cierreEstudioMB.cierreEstudio.p05nombreT}" title="NOMBRE TUTOR" onkeypress="return tabular(event, this)" > 
+       <p:ajax update="p05nombreTE" event="blur" /> 
+       <f:validator validatorId="validadorTexto" /> 
+       <f:attribute name="valorMissing" value="NHD"/> 
+       <f:attribute name="max" value="255"/> 
+      </p:inputText> 
+      <h:outputLabel escape="false" style="font-size: small; font-weight: bold" 
+                     value="#{msg.p05nombreT}" for="p04nombre" /> 
+      <p:message id="p05nombreTE" for="p05nombreT" />
+
+      <!-- p06calle --> 
+      <h:outputLabel value="CALLE:" for="p06calle" /> 
+      <p:inputText id="p06calle" size="25" value="#{cierreEstudioMB.cierreEstudio.p06calle}" title="CALLE" onkeypress="return tabular(event, this)" > 
+       <p:ajax update="p06calleE" event="blur" />
+       <f:validator validatorId="validadorTexto" />
+       <f:attribute name="valorMissing" value="NHD"/> 
+       <f:attribute name="max" value="255"/> 
+      </p:inputText>
+      <h:outputLabel escape="false" style="font-size: small; font-weight: bold" 
+                     value="#{msg.p06calle}" for="p06calle" /> 
+      <p:message id="p06calleE" for="p06calle" />
+
+      <!-- p06nExterior --> 
+      <h:outputLabel value="N. EXTERIOR:" for="p06nExterior" /> 
+      <p:inputText id="p06nExterior" size="2" value="#{cierreEstudioMB.cierreEstudio.p06nExterior}" title="N. EXTERIOR" onkeypress="return tabular(event, this)" > 
+       <p:ajax update="p06nExteriorE" event="blur" /> 
+       <f:validator validatorId="validadorNumeroEntero" /> 
+       <f:attribute name="valorMissing" value="999"/> 
+       <f:attribute name="max" value="100"/> 
+       <f:attribute name="min" value="0"/>
+      </p:inputText> 
+      <h:outputLabel escape="false" style="font-size: small; font-weight: bold" 
+                     value="#{msg.p06nExterior}" for="p06nExterior" /> 
+      <p:message id="p06nExteriorE" for="p06nExterior" />
+
+      <!-- p06nInterior --> 
+      <h:outputLabel value="N. INTERIOR:" for="p06nInterior" /> 
+      <p:inputText id="p06nInterior" size="2" value="#{cierreEstudioMB.cierreEstudio.p06nInterior}" title="N. EXTERIOR" onkeypress="return tabular(event, this)" > 
+       <p:ajax update="p06nInteriorE" event="blur" /> 
+       <f:validator validatorId="validadorNumeroEntero" /> 
+       <f:attribute name="valorMissing" value="999"/> 
+       <f:attribute name="max" value="100"/> 
+       <f:attribute name="min" value="0"/>
+      </p:inputText> 
+      <h:outputLabel escape="false" style="font-size: small; font-weight: bold" 
+                     value="#{msg.p06nInterior}" for="p06nExterior" /> 
+      <p:message id="p06nInteriorE" for="p06nInterior" />
+      
+      <!-- p07codigo --> 
+       <h:outputLabel value="CODIGO:" for="p07codigo" /> 
+      <p:inputText id="p07codigo" size="2" value="#{cierreEstudioMB.cierreEstudio.p07codigo}" title="CODIGO" onkeypress="return tabular(event, this)" > 
+       <p:ajax update="p07codigoE" event="blur" /> 
+       <f:validator validatorId="validadorNumeroEntero" /> 
+       <f:attribute name="valorMissing" value="999"/> 
+       <f:attribute name="max" value="100"/> 
+       <f:attribute name="min" value="0"/>
+      </p:inputText> 
+      <h:outputLabel escape="false" style="font-size: small; font-weight: bold" 
+                     value="#{msg.p07codigo}" for="p07codigo" /> 
+      <p:message id="p07codigoE" for="p07codigo" />
+      
+      <!-- p08colonia --> 
+      <h:outputLabel value="COLONIA:" for="p08colonia" /> 
+      <p:inputText id="p08colonia" size="25" value="#{cierreEstudioMB.cierreEstudio.p08colonia}" title="COLONIA" onkeypress="return tabular(event, this)" > 
+       <p:ajax update="p08coloniaE" event="blur" />
+       <f:validator validatorId="validadorTexto" />
+       <f:attribute name="valorMissing" value="NHD"/> 
+       <f:attribute name="max" value="255"/> 
+      </p:inputText>
+      <h:outputLabel escape="false" style="font-size: small; font-weight: bold" 
+                     value="#{msg.p08colonia}" for="p08colonia" /> 
+      <p:message id="p08coloniaE" for="p08colonia" />
+      
+      <!-- p09localidad --> 
+      <h:outputLabel value="LOCALIDAD:" for="p09localidad" /> 
+      <p:inputText id="p09localidad" size="25" value="#{cierreEstudioMB.cierreEstudio.p09localidad}" title="LOCALIDAD" onkeypress="return tabular(event, this)" > 
+       <p:ajax update="p09localidadE" event="blur" />
+       <f:validator validatorId="validadorTexto" />
+       <f:attribute name="valorMissing" value="NHD"/> 
+       <f:attribute name="max" value="255"/> 
+      </p:inputText>
+      <h:outputLabel escape="false" style="font-size: small; font-weight: bold" 
+                     value="#{msg.p09localidad}" for="p09localidad" /> 
+      <p:message id="p09localidadE" for="p09localidad" />
+      
+       <!-- p10municipio --> 
+      <h:outputLabel value="MUNICIPIO:" for="p10municipio" /> 
+      <p:inputText id="p10municipio" size="25" value="#{cierreEstudioMB.cierreEstudio.p10municipio}" title="MUNICIPIO" onkeypress="return tabular(event, this)" > 
+       <p:ajax update="p10municipioE" event="blur" />
+       <f:validator validatorId="validadorTexto" />
+       <f:attribute name="valorMissing" value="NHD"/> 
+       <f:attribute name="max" value="255"/> 
+      </p:inputText>
+      <h:outputLabel escape="false" style="font-size: small; font-weight: bold" 
+                     value="#{msg.p10municipio}" for="p10municipio" /> 
+      <p:message id="p10municipioE" for="p10municipio" />
+      
+      
+      <!-- p11leHanPuesto --> 
+      <h:outputLabel value="¿LE HAN PUESTO LA VACUNA PEDIACEL/PENTACEL?: " for="p11leHanPuesto" /> 
+      <p:inputText id="p11leHanPuesto" size="2" disabled="#{navegacionMB.estamosEC()}" value="#{cierreEstudioMB.cierreEstudio.p11leHanPuesto}" title="LE HAN PUESTO LA VACUNA" onkeypress="return tabular(event, this)" >
+       <p:ajax update="p11leHanPuestoE" event="blur" /> 
+       <f:validator validatorId="validadorCategoria" />
+       <f:attribute name="valorMissing" value="9"/> 
+       <f:attribute name="values" value="1|2|3"/> 
+      </p:inputText> 
+      <h:outputLabel escape="false" style="font-size: small; font-weight: bold" value="#{msg.p11leHanPuesto}" for="p11leHanPuesto" /> 
+      <p:message id="p11leHanPuestoE" for="p11leHanPuesto" />
+      
+
+       <!-- p12seVacuno --> 
+      <h:outputLabel value="¿SE VACUNÓ?: " for="p12seVacuno" /> 
+      <p:inputText id="p12seVacuno" size="2" value="#{cierreEstudioMB.cierreEstudio.p12seVacuno}" title="¿SE VACUNÓ?" onkeypress="return tabular(event, this)" >
+       <p:ajax update="p12seVacunoE" event="blur" /> 
+       <f:validator validatorId="validadorCategoria" />
+       <f:attribute name="valorMissing" value="9"/> 
+       <f:attribute name="values" value="1|9"/> 
+      </p:inputText> 
+      <h:outputLabel escape="false" style="font-size: small; font-weight: bold" value="#{msg.p12seVacuno}" for="p12seVacuno" /> 
+      <p:message id="p12seVacunoE" for="p12seVacuno" />
+
+      <!-- p12porqueSeVacuno --> 
+      <h:outputLabel value="¿PORQUE SE VACUNÓ?:" for="p12porqueSeVacuno" /> 
+      <p:inputText id="p12porqueSeVacuno" size="25" value="#{cierreEstudioMB.cierreEstudio.p12porqueSeVacuno}" title="¿PORQUE SE VACUNÓ?:" onkeypress="return tabular(event, this)" > 
+       <p:ajax update="p12porqueSeVacunoE" event="blur" />
+       <f:validator validatorId="validadorTexto" />
+       <f:attribute name="valorMissing" value="NHD"/> 
+       <f:attribute name="max" value="255"/> 
+      </p:inputText>
+      <h:outputLabel escape="false" style="font-size: small; font-weight: bold" 
+                     value="#{msg.p12porqueSeVacuno}" for="p12porqueSeVacuno" /> 
+      <p:message id="p12porqueSeVacunoE" for="p12porqueSeVacuno" />
+      
+      <!-- p13noSeVacuno --> 
+      <h:outputLabel value="¿NO SE VACUNÓ?: " for="p13noSeVacuno" /> 
+      <p:inputText id="p13noSeVacuno" size="2" value="#{cierreEstudioMB.cierreEstudio.p13noSeVacuno}" title="¿NO SE VACUNÓ?" onkeypress="return tabular(event, this)" >
+       <p:ajax update="p13noSeVacunoE" event="blur" /> 
+       <f:validator validatorId="validadorCategoria" />
+       <f:attribute name="valorMissing" value="9"/> 
+       <f:attribute name="values" value="1|9"/> 
+      </p:inputText> 
+      <h:outputLabel escape="false" style="font-size: small; font-weight: bold" value="#{msg.p13noSeVacuno}" for="p13noSeVacuno" /> 
+      <p:message id="p13noSeVacunoE" for="p13noSeVacuno" />
+
+      <!-- p13porqueNoSeVacuno --> 
+      <h:outputLabel value="¿PORQUE NO SE VACUNÓ?:" for="p13porqueNoSeVacuno" /> 
+      <p:inputText id="p13porqueNoSeVacuno" size="25" value="#{cierreEstudioMB.cierreEstudio.p13porqueNoSeVacuno}" title="¿PORQUE NO SE VACUNÓ?" onkeypress="return tabular(event, this)" > 
+       <p:ajax update="p13porqueNoSeVacunoE" event="blur" />
+       <f:validator validatorId="validadorTexto" />
+       <f:attribute name="valorMissing" value="NHD"/> 
+       <f:attribute name="max" value="255"/> 
+      </p:inputText>
+      <h:outputLabel escape="false" style="font-size: small; font-weight: bold" 
+                     value="#{msg.p13porqueNoSeVacuno}" for="p10municipio" /> 
+      <p:message id="p13porqueNoSeVacunoE" for="p13porqueNoSeVacuno" />
+      
+      <!-- p14vacunaOPV --> 
+      <h:outputLabel value="LE HAN APLICADO LA VAUNA DE OPV" for="p14vacunaOPV" /> 
+      <p:inputText id="p14vacunaOPV" size="2" value="#{cierreEstudioMB.cierreEstudio.p14vacunaOPV}" title="¿NO SE VACUNÓ?" onkeypress="return tabular(event, this)" >
+       <p:ajax update="p14vacunaOPVE" event="blur" /> 
+       <f:validator validatorId="validadorCategoria" />
+       <f:attribute name="valorMissing" value="9"/> 
+       <f:attribute name="values" value="1|2"/> 
+      </p:inputText> 
+      <h:outputLabel escape="false" style="font-size: small; font-weight: bold" value="#{msg.p14vacunaOPV}" for="p14vacunaOPV" /> 
+      <p:message id="p14vacunaOPVE" for="p14vacunaOPV" />
+      
+      <!-- p14fechaUno --> 
+      <h:outputLabel value="FECHA 1:" for="p14fechaUno" /> 
+      <p:inputMask id="p14fechaUno" size="10" mask="99/99/9999" value="#{cierreEstudioMB.cierreEstudio.p14fechaUno}" title="FECHA 1" onkeypress="return tabular(event, this)" > 
+       <f:convertDateTime pattern="dd/MM/yyyy" /> 
+       <p:ajax update="p14fechaUnoE" event="blur" /> 
+       <f:validator validatorId="validadorFecha" /> 
+       <f:attribute name="startDate" value="31/12/1989"/> 
+       <f:attribute name="endDate" value="30/12/2015"/> 
+      </p:inputMask> 
+      <h:outputLabel escape="false" style="font-size: small; font-weight: bold"  
+                     value="#{msg.p14fechaUno}" for="p14fechaUno" /> 
+      <p:message id="p14fechaUnoE" for="p14fechaUno" />
+      
+      
+      <!-- p14fechaDos --> 
+      <h:outputLabel value="FECHA 2:" for="p14fechaDos" /> 
+      <p:inputMask id="p14fechaDos" size="10" mask="99/99/9999" value="#{cierreEstudioMB.cierreEstudio.p14fechaDos}" title="FECHA 2" onkeypress="return tabular(event, this)" > 
+       <f:convertDateTime pattern="dd/MM/yyyy" /> 
+       <p:ajax update="p14fechaDosE" event="blur" /> 
+       <f:validator validatorId="validadorFecha" /> 
+       <f:attribute name="startDate" value="31/12/1989"/> 
+       <f:attribute name="endDate" value="30/12/2015"/> 
+      </p:inputMask> 
+      <h:outputLabel escape="false" style="font-size: small; font-weight: bold"  
+                     value="#{msg.p14fechaDos}" for="p14fechaDos" /> 
+      <p:message id="p14fechaDosE" for="p14fechaDos" />
+      
+      
+      <!-- p15unicaBCG --> 
+      <h:outputLabel value="BCG UNICA:" for="p15unicaBCG " /> 
+      <p:inputMask id="p15unicaBCG" size="10" mask="99/99/9999" value="#{cierreEstudioMB.cierreEstudio.p15unicaBCG}" title="BCG UNICA" onkeypress="return tabular(event, this)" > 
+       <f:convertDateTime pattern="dd/MM/yyyy" /> 
+       <p:ajax update="p15unicaBCGE" event="blur" /> 
+       <f:validator validatorId="validadorFecha" /> 
+       <f:attribute name="startDate" value="31/12/1989"/> 
+       <f:attribute name="endDate" value="30/12/2015"/> 
+      </p:inputMask> 
+      <h:outputLabel escape="false" style="font-size: small; font-weight: bold"  
+                     value="#{msg.p15unicaBCG}" for="p15unicaBCG" /> 
+      <p:message id="p15unicaBCGE" for="p15unicaBCG" />
+      
+            
+      <!-- p15primeraHepatitis --> 
+      <h:outputLabel value="HEPATITIS B PRIMERA" for="p15primeraHepatitis" /> 
+      <p:inputMask id="p15primeraHepatitis" size="10" mask="99/99/9999" value="#{cierreEstudioMB.cierreEstudio.p15primeraHepatitis}" title="HEPATITIS B PRIMERA" onkeypress="return tabular(event, this)" > 
+       <f:convertDateTime pattern="dd/MM/yyyy" /> 
+       <p:ajax update="p15primeraHepatitisE" event="blur" /> 
+       <f:validator validatorId="validadorFecha" /> 
+       <f:attribute name="startDate" value="31/12/1989"/> 
+       <f:attribute name="endDate" value="30/12/2015"/> 
+      </p:inputMask> 
+      <h:outputLabel escape="false" style="font-size: small; font-weight: bold"  
+                     value="#{msg.p15primeraHepatitis}" for="p15primeraHepatitis" /> 
+      <p:message id="p15primeraHepatitisE" for="p15primeraHepatitis" />
+      
+      <!-- p15segundaHepatitis --> 
+      <h:outputLabel value="HEPATITIS B SEGUNDA" for="p15segundaHepatitis" /> 
+      <p:inputMask id="p15segundaHepatitis" size="10" mask="99/99/9999" value="#{cierreEstudioMB.cierreEstudio.p15segundaHepatitis}" title="HEPATITIS B SEGUNDA" onkeypress="return tabular(event, this)" > 
+       <f:convertDateTime pattern="dd/MM/yyyy" /> 
+       <p:ajax update="p15segundaHepatitisE" event="blur" /> 
+       <f:validator validatorId="validadorFecha" /> 
+       <f:attribute name="startDate" value="31/12/1989"/> 
+       <f:attribute name="endDate" value="30/12/2015"/> 
+      </p:inputMask> 
+      <h:outputLabel escape="false" style="font-size: small; font-weight: bold"  
+                     value="#{msg.p15segundaHepatitis}" for="p15segundaHepatitis" /> 
+      <p:message id="p15segundaHepatitisE" for="p15segundaHepatitis" />
+      
+      <!-- p15terceraHepatitis --> 
+      <h:outputLabel value="HEPATITIS B TERCERA" for="p15terceraHepatitis" /> 
+      <p:inputMask id="p15terceraHepatitis" size="10" mask="99/99/9999" value="#{cierreEstudioMB.cierreEstudio.p15terceraHepatitis}" title="HEPATITIS B TERCERA" onkeypress="return tabular(event, this)" > 
+       <f:convertDateTime pattern="dd/MM/yyyy" /> 
+       <p:ajax update="p15terceraHepatitisE" event="blur" /> 
+       <f:validator validatorId="validadorFecha" /> 
+       <f:attribute name="startDate" value="31/12/1989"/> 
+       <f:attribute name="endDate" value="30/12/2015"/> 
+      </p:inputMask> 
+      <h:outputLabel escape="false" style="font-size: small; font-weight: bold"  
+                     value="#{msg.p15terceraHepatitis}" for="p15terceraHepatitis" /> 
+      <p:message id="p15terceraHepatitisE" for="p15terceraHepatitis" />
+      
+      <!-- p15primeraPenta --> 
+      <h:outputLabel value="PENTAVALENTE PRIMERA" for="p15primeraPenta" /> 
+      <p:inputMask id="p15primeraPenta" size="10" mask="99/99/9999" value="#{cierreEstudioMB.cierreEstudio.p15primeraPenta}" title="PENTAVALENTE PRIMERA" onkeypress="return tabular(event, this)" > 
+       <f:convertDateTime pattern="dd/MM/yyyy" /> 
+       <p:ajax update="p15primeraPentaE" event="blur" /> 
+       <f:validator validatorId="validadorFecha" /> 
+       <f:attribute name="startDate" value="31/12/1989"/> 
+       <f:attribute name="endDate" value="30/12/2015"/> 
+      </p:inputMask> 
+      <h:outputLabel escape="false" style="font-size: small; font-weight: bold"  
+                     value="#{msg.p15primeraPenta}" for="p15primeraPenta" /> 
+      <p:message id="p15primeraPentaE" for="p15primeraPenta" />
+      
+      <!-- p15segundaPenta --> 
+      <h:outputLabel value="PENTAVALENTE SEGUNDA" for="p15segundaPenta" /> 
+      <p:inputMask id="p15segundaPenta" size="10" mask="99/99/9999" value="#{cierreEstudioMB.cierreEstudio.p15segundaPenta}" title="PENTAVALENTE SEGUNDA" onkeypress="return tabular(event, this)" > 
+       <f:convertDateTime pattern="dd/MM/yyyy" /> 
+       <p:ajax update="p15segundaPentaE" event="blur" /> 
+       <f:validator validatorId="validadorFecha" /> 
+       <f:attribute name="startDate" value="31/12/1989"/> 
+       <f:attribute name="endDate" value="30/12/2015"/> 
+      </p:inputMask> 
+      <h:outputLabel escape="false" style="font-size: small; font-weight: bold"  
+                     value="#{msg.p15segundaPenta}" for="p15segundaPenta" /> 
+      <p:message id="p15segundaPentaE" for="p15segundaPenta" />
+      
+      <!-- p15terceraPenta --> 
+      <h:outputLabel value="PENTAVALENTE TERCERA" for="p15terceraPenta" /> 
+      <p:inputMask id="p15terceraPenta" size="10" mask="99/99/9999" value="#{cierreEstudioMB.cierreEstudio.p15terceraPenta}" title="PENTAVALENTE TERCERA" onkeypress="return tabular(event, this)" > 
+       <f:convertDateTime pattern="dd/MM/yyyy" /> 
+       <p:ajax update="p15terceraPentaE" event="blur" /> 
+       <f:validator validatorId="validadorFecha" /> 
+       <f:attribute name="startDate" value="31/12/1989"/> 
+       <f:attribute name="endDate" value="30/12/2015"/> 
+      </p:inputMask> 
+      <h:outputLabel escape="false" style="font-size: small; font-weight: bold"  
+                     value="#{msg.p15terceraPenta}" for="p15terceraPenta" /> 
+      <p:message id="p15terceraPentaE" for="p15terceraPenta" />
+      
+      <!-- p15cuartaPenta --> 
+      <h:outputLabel value="PENTAVALENTE CUARTA" for="p15cuartaPenta" /> 
+      <p:inputMask id="p15cuartaPenta" size="10" mask="99/99/9999" value="#{cierreEstudioMB.cierreEstudio.p15cuartaPenta}" title="PENTAVALENTE CUARTA" onkeypress="return tabular(event, this)" > 
+       <f:convertDateTime pattern="dd/MM/yyyy" /> 
+       <p:ajax update="p15cuartaPentaE" event="blur" /> 
+       <f:validator validatorId="validadorFecha" /> 
+       <f:attribute name="startDate" value="31/12/1989"/> 
+       <f:attribute name="endDate" value="30/12/2015"/> 
+      </p:inputMask> 
+      <h:outputLabel escape="false" style="font-size: small; font-weight: bold"  
+                     value="#{msg.p15cuartaPenta}" for="p15cuartaPenta" /> 
+      <p:message id="p15cuartaPentaE" for="p15cuartaPenta" />
+      
+      <!-- p15refuerzoDPT --> 
+      <h:outputLabel value="DTP REFUERZO" for="p15refuerzoDPT" /> 
+      <p:inputMask id="p15refuerzoDPT" size="10" mask="99/99/9999" value="#{cierreEstudioMB.cierreEstudio.p15refuerzoDPT}" title="PENTAVALENTE CUARTA" onkeypress="return tabular(event, this)" > 
+       <f:convertDateTime pattern="dd/MM/yyyy" /> 
+       <p:ajax update="p15refuerzoDPTE" event="blur" /> 
+       <f:validator validatorId="validadorFecha" /> 
+       <f:attribute name="startDate" value="31/12/1989"/> 
+       <f:attribute name="endDate" value="30/12/2015"/> 
+      </p:inputMask> 
+      <h:outputLabel escape="false" style="font-size: small; font-weight: bold"  
+                     value="#{msg.p15refuerzoDPT}" for="p15refuerzoDPT" /> 
+      <p:message id="p15refuerzoDPTE" for="p15refuerzoDPT" />
+      
+      <!-- p15primeraSRP --> 
+      <h:outputLabel value="SRP PRIMERA" for="p15primeraSRP" /> 
+      <p:inputMask id="p15primeraSRP" size="10" mask="99/99/9999" value="#{cierreEstudioMB.cierreEstudio.p15primeraSRP}" title="SRP PRIMERA" onkeypress="return tabular(event, this)" > 
+       <f:convertDateTime pattern="dd/MM/yyyy" /> 
+       <p:ajax update="p15primeraSRPE" event="blur" /> 
+       <f:validator validatorId="validadorFecha" /> 
+       <f:attribute name="startDate" value="31/12/1989"/> 
+       <f:attribute name="endDate" value="30/12/2015"/> 
+      </p:inputMask> 
+      <h:outputLabel escape="false" style="font-size: small; font-weight: bold"  
+                     value="#{msg.p15primeraSRP}" for="p15primeraSRP" /> 
+      <p:message id="p15primeraSRPE" for="p15primeraSRP" />
+      
+      <!-- p15refuerzoSRP --> 
+      <h:outputLabel value="SRP REFUERZO" for="p15refuerzoSRP" /> 
+      <p:inputMask id="p15refuerzoSRP" size="10" mask="99/99/9999" value="#{cierreEstudioMB.cierreEstudio.p15refuerzoSRP}" title="SRP REFUERZO" onkeypress="return tabular(event, this)" > 
+       <f:convertDateTime pattern="dd/MM/yyyy" /> 
+       <p:ajax update="p15refuerzoSRPE" event="blur" /> 
+       <f:validator validatorId="validadorFecha" /> 
+       <f:attribute name="startDate" value="31/12/1989"/> 
+       <f:attribute name="endDate" value="30/12/2015"/> 
+      </p:inputMask> 
+      <h:outputLabel escape="false" style="font-size: small; font-weight: bold"  
+                     value="#{msg.p15refuerzoSRP}" for="p15refuerzoSRP" /> 
+      <p:message id="p15refuerzoSRPE" for="p15refuerzoSRP" />
+      
+      <!-- p15primeraRotavirus --> 
+      <h:outputLabel value="ROTAVIRUS PRIMERA" for="p15primeraRotavirus" /> 
+      <p:inputMask id="p15primeraRotavirus" size="10" mask="99/99/9999" value="#{cierreEstudioMB.cierreEstudio.p15primeraRotavirus}" title="ROTAVIRUS PRIMERA" onkeypress="return tabular(event, this)" > 
+       <f:convertDateTime pattern="dd/MM/yyyy" /> 
+       <p:ajax update="p15primeraRotavirusE" event="blur" /> 
+       <f:validator validatorId="validadorFecha" /> 
+       <f:attribute name="startDate" value="31/12/1989"/> 
+       <f:attribute name="endDate" value="30/12/2015"/> 
+      </p:inputMask> 
+      <h:outputLabel escape="false" style="font-size: small; font-weight: bold"  
+                     value="#{msg.p15primeraRotavirus}" for="p15primeraRotavirus" /> 
+      <p:message id="p15primeraRotavirusE" for="p15primeraRotavirus" />
+      
+      <!-- p15segundaRotavirus --> 
+      <h:outputLabel value="ROTAVIRUS SEGUNDA" for="p15segundaRotavirus" /> 
+      <p:inputMask id="p15segundaRotavirus" size="10" mask="99/99/9999" value="#{cierreEstudioMB.cierreEstudio.p15segundaRotavirus}" title="ROTAVIRUS SEGUNDA" onkeypress="return tabular(event, this)" > 
+       <f:convertDateTime pattern="dd/MM/yyyy" /> 
+       <p:ajax update="p15segundaRotavirusE" event="blur" /> 
+       <f:validator validatorId="validadorFecha" /> 
+       <f:attribute name="startDate" value="31/12/1989"/> 
+       <f:attribute name="endDate" value="30/12/2015"/> 
+      </p:inputMask> 
+      <h:outputLabel escape="false" style="font-size: small; font-weight: bold"  
+                     value="#{msg.p15segundaRotavirus}" for="p15segundaRotavirus" /> 
+      <p:message id="p15segundaRotavirusE" for="p15segundaRotavirus" />
+      
+      <!-- p15terceraRotavirus --> 
+      <h:outputLabel value="ROTAVIRUS TERCERA" for="p15terceraRotavirus" /> 
+      <p:inputMask id="p15terceraRotavirus" size="10" mask="99/99/9999" value="#{cierreEstudioMB.cierreEstudio.p15terceraRotavirus}" title="ROTAVIRUS TERCERA" onkeypress="return tabular(event, this)" > 
+       <f:convertDateTime pattern="dd/MM/yyyy" /> 
+       <p:ajax update="p15terceraRotavirusE" event="blur" /> 
+       <f:validator validatorId="validadorFecha" /> 
+       <f:attribute name="startDate" value="31/12/1989"/> 
+       <f:attribute name="endDate" value="30/12/2015"/> 
+      </p:inputMask> 
+      <h:outputLabel escape="false" style="font-size: small; font-weight: bold"  
+                     value="#{msg.p15terceraRotavirus}" for="p15terceraRotavirus" /> 
+      <p:message id="p15terceraRotavirusE" for="p15terceraRotavirus" />
+      
+      <!-- p15primeraNeumococica --> 
+      <h:outputLabel value="NEUMOCOCICA PRIMERA" for="p15primeraNeumococica" /> 
+      <p:inputMask id="p15primeraNeumococica" size="10" mask="99/99/9999" value="#{cierreEstudioMB.cierreEstudio.p15primeraNeumococica}" title="NEUMOCOCICA PRIMERA" 
+                   onkeypress="return tabular(event, this)" > 
+       <f:convertDateTime pattern="dd/MM/yyyy" /> 
+       <p:ajax update="p15primeraNeumococicaE" event="blur" /> 
+       <f:validator validatorId="validadorFecha" /> 
+       <f:attribute name="startDate" value="31/12/1989"/> 
+       <f:attribute name="endDate" value="30/12/2015"/> 
+      </p:inputMask> 
+      <h:outputLabel escape="false" style="font-size: small; font-weight: bold"  
+                     value="#{msg.p15primeraNeumococica}" for="p15primeraNeumococica" /> 
+      <p:message id="p15primeraNeumococicaE" for="p15primeraNeumococica" />
+      
+      <!-- p15segundaNeumococica --> 
+      <h:outputLabel value="NEUMOCOCICA SEGUNDA" for="p15segundaNeumococica" /> 
+      <p:inputMask id="p15segundaNeumococica" size="10" mask="99/99/9999" value="#{cierreEstudioMB.cierreEstudio.p15segundaNeumococica}" title="NEUMOCOCICA SEGUNDA" onkeypress="return tabular(event, this)" > 
+       <f:convertDateTime pattern="dd/MM/yyyy" /> 
+       <p:ajax update="p15segundaNeumococicaE" event="blur" /> 
+       <f:validator validatorId="validadorFecha" /> 
+       <f:attribute name="startDate" value="31/12/1989"/> 
+       <f:attribute name="endDate" value="30/12/2015"/> 
+      </p:inputMask> 
+      <h:outputLabel escape="false" style="font-size: small; font-weight: bold"  
+                     value="#{msg.p15segundaNeumococica}" for="p15segundaNeumococica" /> 
+      <p:message id="p15segundaNeumococicaE" for="p15segundaNeumococica" />
+      
+      <!-- p15refuerzoNeumococica --> 
+      <h:outputLabel value="NEUMOCOCICA REFUERZO" for="p15refuerzoNeumococica" /> 
+      <p:inputMask id="p15refuerzoNeumococica" size="10" mask="99/99/9999" value="#{cierreEstudioMB.cierreEstudio.p15refuerzoNeumococica}" title="NEUMOCOCICA REFUERZO" 
+                   onkeypress="return tabular(event, this)" > 
+       <f:convertDateTime pattern="dd/MM/yyyy" /> 
+       <p:ajax update="p15refuerzoNeumococicaE" event="blur" /> 
+       <f:validator validatorId="validadorFecha" /> 
+       <f:attribute name="startDate" value="31/12/1989"/> 
+       <f:attribute name="endDate" value="30/12/2015"/> 
+      </p:inputMask> 
+      <h:outputLabel escape="false" style="font-size: small; font-weight: bold"  
+                     value="#{msg.p15refuerzoNeumococica}" for="p15refuerzoNeumococica" /> 
+      <p:message id="p15refuerzoNeumococicaE" for="p15refuerzoNeumococica" />
+      
+      <!-- p15primeraInfluenza --> 
+      <h:outputLabel value="INFLUENZA PRIMERA" for="p15primeraInfluenza" /> 
+      <p:inputMask id="p15primeraInfluenza" size="10" mask="99/99/9999" value="#{cierreEstudioMB.cierreEstudio.p15primeraInfluenza}" title="INFLUENZA PRIMERA" onkeypress="return tabular(event, this)" > 
+       <f:convertDateTime pattern="dd/MM/yyyy" /> 
+       <p:ajax update="p15primeraInfluenzaE" event="blur" /> 
+       <f:validator validatorId="validadorFecha" /> 
+       <f:attribute name="startDate" value="31/12/1989"/> 
+       <f:attribute name="endDate" value="30/12/2015"/> 
+      </p:inputMask> 
+      <h:outputLabel escape="false" style="font-size: small; font-weight: bold"  
+                     value="#{msg.p15primeraInfluenza}" for="p15primeraInfluenza" /> 
+      <p:message id="p15primeraInfluenzaE" for="p15primeraInfluenza" />
+      
+       <!-- p15segundaInfluenza --> 
+      <h:outputLabel value="INFLUENZA SEGUNDA" for="p15segundaInfluenza" /> 
+      <p:inputMask id="p15segundaInfluenza" size="10" mask="99/99/9999" value="#{cierreEstudioMB.cierreEstudio.p15segundaInfluenza}" title="INFLUENZA SEGUNDA" onkeypress="return tabular(event, this)" > 
+       <f:convertDateTime pattern="dd/MM/yyyy" /> 
+       <p:ajax update="p15segundaInfluenzaE" event="blur" /> 
+       <f:validator validatorId="validadorFecha" /> 
+       <f:attribute name="startDate" value="31/12/1989"/> 
+       <f:attribute name="endDate" value="30/12/2015"/> 
+      </p:inputMask> 
+      <h:outputLabel escape="false" style="font-size: small; font-weight: bold"  
+                     value="#{msg.p15segundaInfluenza}" for="p15segundaInfluenza" /> 
+      <p:message id="p15segundaInfluenzaE" for="p15segundaInfluenza" />
+      
+      <!-- p15revacunacionInfluenza --> 
+      <h:outputLabel value="INFLUENZA REVACUNACION" for="p15revacunacionInfluenza" /> 
+      <p:inputMask id="p15revacunacionInfluenza" size="10" mask="99/99/9999" value="#{cierreEstudioMB.cierreEstudio.p15revacunacionInfluenza}" title="INFLUENZA REVACUNACION" onkeypress="return tabular(event, this)" > 
+       <f:convertDateTime pattern="dd/MM/yyyy" /> 
+       <p:ajax update="p15revacunacionInfluenzaE" event="blur" /> 
+       <f:validator validatorId="validadorFecha" /> 
+       <f:attribute name="startDate" value="31/12/1989"/> 
+       <f:attribute name="endDate" value="30/12/2015"/> 
+      </p:inputMask> 
+      <h:outputLabel escape="false" style="font-size: small; font-weight: bold"  
+                     value="#{msg.p15revacunacionInfluenza}" for="p15revacunacionInfluenza" /> 
+      <p:message id="p15revacunacionInfluenzaE" for="p15revacunacionInfluenza" />
+      
+      
+      <!-- p15adicionalesSR --> 
+      <h:outputLabel value="SR ADICIONALES" for="p15adicionalesSR" /> 
+      <p:inputMask id="p15adicionalesSR" size="10" mask="99/99/9999" value="#{cierreEstudioMB.cierreEstudio.p15adicionalesSR}" title="SR ADICIONALES" onkeypress="return tabular(event, this)" > 
+       <f:convertDateTime pattern="dd/MM/yyyy" /> 
+       <p:ajax update="p15adicionalesSRE" event="blur" /> 
+       <f:validator validatorId="validadorFecha" /> 
+       <f:attribute name="startDate" value="31/12/1989"/> 
+       <f:attribute name="endDate" value="30/12/2015"/> 
+      </p:inputMask> 
+      <h:outputLabel escape="false" style="font-size: small; font-weight: bold"  
+                     value="#{msg.p15adicionalesSR}" for="p15adicionalesSR" /> 
+      <p:message id="p15adicionalesSRE" for="p15adicionalesSR" />
+      
+      
+      <!-- p16otroUsted --> 
+      <h:outputLabel value="¿PARTICIPARIA USTED EN OTRO ESTUDIO?: " for="p16otroUsted" /> 
+      <p:inputText id="p16otroUsted" size="2" value="#{cierreEstudioMB.cierreEstudio.p16otroUsted}" title="¿PARTICIPARIA USTED EN OTRO ESTUDIO?" onkeypress="return tabular(event, this)" >
+       <p:ajax update="p16otroUstedE" event="blur" /> 
+       <f:validator validatorId="validadorCategoria" />
+       <f:attribute name="valorMissing" value="9"/> 
+       <f:attribute name="values" value="1|2"/> 
+      </p:inputText> 
+      <h:outputLabel escape="false" style="font-size: small; font-weight: bold" value="#{msg.p16otroUsted}" for="p16otroUsted" /> 
+      <p:message id="p16otroUstedE" for="p16otroUsted" />
+      
+      <!-- p17otroFamilia --> 
+      <h:outputLabel value="¿PARTICIPARIA SU FAMILIA EN OTRO ESTUDIO?: " for="p17otroFamilia" /> 
+      <p:inputText id="p17otroFamilia" size="2" value="#{cierreEstudioMB.cierreEstudio.p17OtroFamilia}" title="¿PARTICIPARIA SU FAMILIA EN OTRO ESTUDIO?" onkeypress="return tabular(event, this)" >
+       <p:ajax update="p17otroFamiliaE" event="blur" /> 
+       <f:validator validatorId="validadorCategoria" />
+       <f:attribute name="valorMissing" value="9"/> 
+       <f:attribute name="values" value="1|2"/> 
+      </p:inputText> 
+      <h:outputLabel escape="false" style="font-size: small; font-weight: bold" value="#{msg.p17OtroFamilia}" for="p17otroFamilia" /> 
+      <p:message id="p17otroFamiliaE" for="p17otroFamilia" />
+      
+    </h:panelGrid>
+    </h:form>
+   
+    <div style="position: fixed;right: 10%;top: 25%;  width: 8em;  ">
+     <p:commandButton id="guardar"  update="form1 mensajes" value="Guardar Formato" actionListener="#{cierreEstudioMB.guardarCierreEstudio()}"/>
+     <p:commandButton id="reset" update="form1" value="Reset" type="reset"/>
+    </div>
+
+   </ui:define>
+  </ui:composition>
+ </h:body>
+</html>
